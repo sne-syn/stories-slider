@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stories</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <ul class="cards">
+    <li class="card"><button class="card__button" id="slide-1">Show story - 1</button></li>
+    <li class="card"><button class="card__button" id="slide-2">Show story - 2</button></li>
+    <li class="card"><button class="card__button" id="slide-3">Show story - 3</button></li>
+  </ul>
+
+  <section class="stories">
+    <article class="slide" data-slide="slide-1">
+      <div class="slide__wrapper">
+        <div class="slide__list">
+          <ul class="slide-items">
+            <img class="slide__image" src="./img/1.png" alt="image1">
+            <img class="slide__image" src="./img/2.png" alt="image2">
+            <img class="slide__image" src="./img/3.png" alt="image3">
+            <img class="slide__image" src="./img/4.png" alt="image4">
+          </ul>
+        </div>
+        <div class="slide-nav">
+          <div class="slide-thumbs"></div>
+          <ul class="slide-buttons">
+            <li class="slide-button-item"><button class="slide-button slide-prev">Prev</button></li>
+            <li class="slide-button-item"><button class="slide-button slide-stop">Stop</button></li>
+            <li class="slide-button-item"><button class="slide-button slide-next">Next</button></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+    <article class="slide-position">
+      <div class="slide-wrapper" data-slide="slide-2">
+        <div class="slide">
+          <ul class="slide-items">
+            <img class="slide-image" src="./img/4.png" alt="image4">
+            <img class="slide-image" src="./img/2.png" alt="image2">
+            <img class="slide-image" src="./img/3.png" alt="image3">
+            <img class="slide-image" src="./img/1.png" alt="image1">
+          </ul>
+        </div>
+        <div class="slide-nav">
+          <div class="slide-thumbs"></div>
+          <ul class="slide-buttons">
+            <li class="slide-button-item"><button class="slide-button slide-prev">Prev</button></li>
+            <li class="slide-button-item"><button class="slide-button slide-stop">Stop</button></li>
+            <li class="slide-button-item"><button class="slide-button slide-next">Next</button></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+    <article class="slide-position">
+      <div class="slide-wrapper" data-slide="slide-3">
+        <div class="slide">
+          <ul class="slide-items">
+            <img class="slide-image" src="./img/3.png" alt="image3">
+            <img class="slide-image" src="./img/1.png" alt="image1">
+            <img class="slide-image" src="./img/2.png" alt="image2">
+            <img class="slide-image" src="./img/4.png" alt="image4">
+          </ul>
+        </div>
+        <div class="slide-nav">
+          <div class="slide-thumbs"></div>
+          <ul class="slide-buttons">
+            <li class="slide-button-item"><button class="slide-button slide-prev">Prev</button></li>
+            <li class="slide-button-item"><button class="slide-button slide-stop">Stop</button></li>
+            <li class="slide-button-item"><button class="slide-button slide-next">Next</button></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+    <div class="slide-overlay"></div>
+  </section>
+  <script src="./slide-stories.js"></script>
+</body>
+
+</html>
