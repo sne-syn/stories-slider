@@ -1,8 +1,8 @@
 class SlideStories {
   constructor(id) {
-    this.slide = document.querySelector(`[data-slide="${id}"]`);
     this.active = 0;
-
+    this.slide = document.querySelector(`[data-slide="${id}"]`);
+    this.items = this.slide.querySelectorAll('.stories__item');
     this._activeSlide = this._activeSlide.bind(this);
     this._addNavigation = this._addNavigation.bind(this);
     this._addThumbItems = this._addThumbItems.bind(this);
@@ -11,19 +11,18 @@ class SlideStories {
     this._prev = this._prev.bind(this);
     this._next = this._next.bind(this);
     this.init = this.init.bind(this);
-
-    this.init();
+    this.close = this.close.bind(this);
   }
 
   _activeSlide(index) {
     this.active = index;
-    this.items = this.slide.querySelectorAll('.slide-image');
-    this.items.forEach((item) => item.classList.remove('slide-image--active'));
-    this.items[index].classList.add('slide-image--active');
+    this.items = this.slide.querySelectorAll('.stories__item');
+    this.items.forEach((item) => item.classList.remove('stories__item--active'));
+    this.items[index].classList.add('stories__item--active');
     this.thumbItems.forEach((item) => {
-      item.classList.remove('slide-thumb--active');
+      item.classList.remove('stories__thumb--active');
     });
-    this.thumbItems[index].classList.add('slide-thumb--active');
+    this.thumbItems[index].classList.add('stories__thumb--active');
     this._autoSlide();
   }
 
@@ -42,15 +41,20 @@ class SlideStories {
   }
 
   _addNavigation() {
-    const nextButton = this.slide.querySelector('.slide-next');
-    const prevButton = this.slide.querySelector('.slide-prev');
+    const nextButton = this.slide.querySelector('.stories__button--next');
+    const prevButton = this.slide.querySelector('.stories__button--prev');
     nextButton.addEventListener('click', this._next);
     prevButton.addEventListener('click', this._prev);
   }
 
   _addThumbItems() {
-    this.items.forEach(() => this.thumbs.innerHTML += `<span class="slide-thumb"></span>`);
-    this.thumbItems = this.thumbs.querySelectorAll('.slide-thumb');
+    this.items = this.slide.querySelectorAll('.stories__item');
+    this.thumbs = this.slide.querySelector('.stories__thumbs');
+    this.thumbs.innerHTML = '';
+    this.items.forEach(() => {
+      this.thumbs.innerHTML += `<span class="stories__thumb"></span>`
+    });
+    this.thumbItems = this.thumbs.querySelectorAll('.stories__thumb');
   }
 
   _autoSlide() {
@@ -58,7 +62,7 @@ class SlideStories {
     this.timeout = setTimeout(this._next, 5000);
     this.thumbItems.forEach((item) => {
       if (item.hasChildNodes()) {
-        item.innerHTML = '';        
+        item.innerHTML = '';
       }
     });
     this._addProgressBar();
@@ -66,23 +70,32 @@ class SlideStories {
 
   _addProgressBar() {
     const progressBar = document.createElement('span');
-    const activeSlideThumb = this.slide.querySelector('.slide-thumb--active');
-    progressBar.classList.add('slide-progressbar');
+    const activeSlideThumb = this.slide.querySelector('.stories__thumb--active');
+    progressBar.classList.add('stories__progressbar');
     if (activeSlideThumb) {
       activeSlideThumb.appendChild(progressBar);
-    }  
+    }
   }
 
   init() {
-    this.items = this.slide.querySelectorAll('.slide-image');
-    this.thumbs = this.slide.querySelector('.slide-thumbs');
-    this._addThumbItems()
+    this.slide.classList.add('stories__collection--show');
+    this._addThumbItems();
     this._activeSlide(0);
     this._addNavigation();
   }
+
+  close() {
+    this.slide.classList.remove('stories__collection--show');
+    this._autoSlide();
+  }
 }
 
-const buttons = document.querySelectorAll('.card-button');
+const buttons = document.querySelectorAll('.card__button');
 buttons.forEach((btn) => {
-  btn.addEventListener('click', (evt) => new SlideStories(`slide-${evt.target.id}`))
+  btn.addEventListener('click', (evt) => {
+    const allStories = document.querySelectorAll('.stories__collection');
+    allStories.forEach((story) => story.classList.remove('stories__collection--show'))
+    const stories = new SlideStories(`${evt.target.id}`);
+    stories.init();
+  });
 })

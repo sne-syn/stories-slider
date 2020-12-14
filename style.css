@@ -13,8 +13,6 @@ body {
   min-width: 320px;
   margin: 0;
   padding: 0;
-  background-color: #1b1d20;
-  color: white;
 }
 
 a {
@@ -89,57 +87,50 @@ fieldset {
   border-radius: 5px;
   padding: 10px 5px;
   margin: auto;
+  color: white;
 }
 
-.slide-whole-section {
+.stories__collection {
   display: none;
 }
 
-.slide-overlay {
-  position: absolute;
+.stories__collection--show {
+  display: block;
+}
+
+.stories__overlay {
   overflow: auto;
-  left: 0;
+  position: relative;
   top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba($color-white, 0.9);
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
   z-index: 300;
 }
 
-.slide-position {
+.stories__collection-wrapper {
   position: fixed;
-  left: 50%;
   top: 50%;
-  margin-left: -160px;
-  margin-top: -175px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 400;
-}
-
-.slide-wrapper {
   width: 320px;
-  background-color: $color-white;
+  background-color: white;
   border: 1px solid #c6c6c6;
   box-shadow: 0 5px 10px 0 rgba(0, 1, 1, 0.25);
 }
 
-.slide-show {
-  display: block;
-}
-
-.slide {
-  /* display: none; */
-  position: relative;
-  max-width: 380px;
-}
-
-.slide-items {
+.stories__list {
   position: relative;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 4px 20px 2px rgba(0, 0, 0, 0.4);
 }
 
-.slide-image {
+.stories__item {
   position: absolute;
   opacity: 0;
   padding: 10px;
@@ -147,13 +138,13 @@ fieldset {
   pointer-events: none;
 }
 
-.slide-image--active {
+.stories__item--active {
   position: relative;
   opacity: 1;
   pointer-events: initial;
 }
 
-.slide-nav {
+.stories__nav {
   position: absolute;
   top: 0;
   left: 0;
@@ -162,12 +153,11 @@ fieldset {
   z-index: 1;
 }
 
-.slide-thumbs {
+.stories__thumbs {
   display: flex;
 }
 
-.slide-thumb {
-
+.stories__thumb {
   flex: 1;
   display: block;
   height: 3px;
@@ -177,7 +167,7 @@ fieldset {
   overflow: hidden;
 }
 
-.slide-progressbar {
+.stories__progressbar {
   width: inherit;
   height: inherit;
   content: '';
@@ -189,23 +179,22 @@ fieldset {
   animation: thumb 5s forwards linear;
 }
 
-.slide-buttons {
+.stories__buttons {
   display: flex;
   flex-direction: row;
   height: 90%;
 }
 
-.slide-button-item {
+.stories__button-item {
   flex-basis: 33%; 
   height: 100%;
   opacity: 0;
 }
 
-.slide-button {
+.stories__button {
   width: 100%;
   height: 100%;
 }
-
 
 @keyframes thumb {
   to {
